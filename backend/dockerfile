@@ -1,0 +1,13 @@
+FROM python:3.13
+
+COPY . /app
+
+RUN pip install -r /app/requirements.txt
+
+EXPOSE 8080
+
+ENV APP_ENV=docker
+
+COPY . .
+
+CMD ["python", "./main.py"]
