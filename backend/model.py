@@ -10,3 +10,8 @@ class Task(BaseModel):
 class TaskList(BaseModel):
     name: str | None
     tasks: list[Task]
+
+
+class TaskIdentifier(BaseModel):
+    id: int
+    name: str | None

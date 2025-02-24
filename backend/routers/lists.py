@@ -2,7 +2,7 @@ from fastapi import APIRouter, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-from model import TaskList, Task
+from model import TaskIdentifier, TaskList
 import redis_helper
 
 router = APIRouter()
@@ -19,6 +19,12 @@ async def load_list(id: int = 1) -> TaskList:
 async def save_list(tasklist: TaskList, id: str | None = None):
     id = redis_helper.save_tasklist(tasklist, id)
     return id
+
+
+@router.get("/loadAll")
+async def load_all() -> list[TaskIdentifier]:
+    taskIdentifier: list[TaskIdentifier] = redis_helper.load_all()
+    return taskIdentifier
 
 
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
