@@ -1,5 +1,5 @@
 import { Box, List, ListItem, ListItemText, SxProps } from "@mui/material";
-
+import NextLink from "next/link";
 import React, { useEffect } from "react";
 
 const boxStyle: SxProps = {
@@ -33,15 +33,19 @@ const LoadIndex = () => {
           {lists.map((list) => {
             return (
               <ListItem key={list.id} divider disablePadding>
-                <ListItemText
-                  primary={list.name}
-                  id={`item${list.id}`}
-                  slotProps={{
-                    primary: {
-                      fontSize: "20px",
-                    },
-                  }}
-                />
+                <NextLink
+                  href={{ pathname: `./load`, query: { id: `${list.id}` } }}
+                >
+                  <ListItemText
+                    primary={list.name}
+                    id={`item${list.id}`}
+                    slotProps={{
+                      primary: {
+                        fontSize: "20px",
+                      },
+                    }}
+                  />
+                </NextLink>
               </ListItem>
             );
           })}

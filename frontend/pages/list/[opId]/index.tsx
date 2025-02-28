@@ -32,6 +32,7 @@ const ListIndex = () => {
   const { opId, id } = router.query;
   const [text, setText] = React.useState<string>("");
   const [tasks, setTasks] = React.useState<Task[]>([]);
+  const [name, setName] = React.useState<string>("");
   const [taskId, setTaskId] = React.useState<number>(0);
   const [listId, setListId] = React.useState<number>(0);
 
@@ -62,7 +63,7 @@ const ListIndex = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: "value",
+        name: name,
         tasks: tasks,
       }),
     })
@@ -94,6 +95,17 @@ const ListIndex = () => {
   return (
     <Box sx={{ ...boxStyle, width: "100vw", height: "100vh" }}>
       <Box sx={{ ...boxStyle, width: "100vw", height: "80vh" }}>
+        <FormControl>
+          <InputLabel>Name</InputLabel>
+          <OutlinedInput
+            id="name"
+            label="name"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+        </FormControl>
         <List sx={{ width: "80vw" }}>
           {tasks.map((task) => {
             return (

@@ -40,7 +40,7 @@ const Home = () => {
         <NextLink href={`list/new`}>
           <SelectionCard text="Create New" />
         </NextLink>
-        <NextLink href={{ pathname: `list/load`, query: { id: "1" } }}>
+        <NextLink href={{ pathname: `list/loadlists`, query: { id: "1" } }}>
           <SelectionCard text="Load Existing" />
         </NextLink>
       </Box>
